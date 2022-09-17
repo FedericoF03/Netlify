@@ -10,8 +10,8 @@ print('
         <title>Netfly</title>
         <meta name="description" content="Bienvenido a Netfly tus peliculas y series en una sola pagina" ></meta>
         <link rel="shortcut icon" href="Public/img/favicon.ico" type="image/x-icon">
-        <link rel="stylesheet" href="Public/css/responsimple.min.css">
-        <link rel="stylesheet" href="Public/css/netfly.css">
+        <link rel="stylesheet" href="./Public/css/responsimple.min.css">
+        <link rel="stylesheet" href="./Public/css/netfly.css">
     </head>
 <body>
     <header class="container  center  header">

@@ -9,6 +9,7 @@ if($_POST['r'] == 'movieserie-show' && isset($_POST['imdb_id'])) {
                     <p class="item error">error al cargar la informacion de la serie <b>%s</b></p>
                 </div>', $_POST['imdb_id']);
     } else {
+        
         $template_ms = '
         <div class="item movieserie-info">
             <h2 class="p_5">%s</h2>
@@ -18,12 +19,24 @@ if($_POST['r'] == 'movieserie-show' && isset($_POST['imdb_id'])) {
                 <small class="block">%s</small>
                 <small class="block">%s</small>
                 <small class="block">%s</small>
-                <small class="block">%s</small>
-                <small class="block">%s</small>
-            </p>
-            <img src="%s" alt="Poster" class="p_5 poster">
-            <p class="p_5">Author:<b>%s</b></p>
-            <p class="p_5">Actors:<b>%s</b></p>
+                <small class="block">%s</small>';
+                
+            ($ms[0]['rating'] > 0)
+            ?$template_ms .= '<small class="block">%s</small>
+            </p>'
+            :$template_ms .= '<small class="none">%s</small>
+            </p>';
+        
+            ($ms[0]['poster'])
+            ? $template_ms .= '<img src="%s" alt="Poster" class="p_5 poster">'
+            :  '<img src="%s" alt="Poster" class="none">';
+            ($ms[0]['author'] == "")
+            ? $template_ms .= '<p class="p_5">Author:<b>%s</b></p>'
+            : $template_ms .= '<p class="none">Author:<b>%s</b></p>';
+            ($ms[0]['author'] == "")
+            ? $template_ms .= '<p class="p_5">Actors:<b>%s</b></p>'
+            : $template_ms .= '<p class="none">Actors:<b>%s</b></p>';   
+            $template_ms .='   
             <article class="p_5 ph7 mauto left">%s</article>
             <div class="p_5 trailer">
                 <iframe src="%s" frameborder="0" allowfullscreen></iframe>

@@ -3,7 +3,7 @@
 abstract class Model {
     private static $db_host = 'localhost';
     private static $db_user = 'root';
-    private static $db_pass = 'Poder03si';
+    private static $db_pass = '********';
     private static $db_name = 'netfly';
     private static $db_charset = 'utf8';
     private $conn;

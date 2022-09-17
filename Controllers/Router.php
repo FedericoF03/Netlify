@@ -1,19 +1,18 @@
 <?php 
 
 class Router {
-    public $route;
+    protected $route;
 
-    public function __construct ($route) {
+    public function __construct () {
 
         if( !isset($_SESSION) )  session_start(); 
          
         if( !isset($_SESSION['ok']) )  $_SESSION['ok'] = false;
 
         if( $_SESSION['ok'] ) {
-
+            
             $this->route = isset($_GET['r']) ? $_GET['r'] : 'home';
             $controller = new ViewController();
-            
             switch ($this->route) {
                 case 'home':
                     $controller->load_view('home');
@@ -54,16 +53,16 @@ class Router {
         } else {
             if(!isset($_POST['user']) && !isset($_POST['pass'])) {
                
-                $login_form = new ViewController();
-                $login_form->load_view('login');
+                $controller = new ViewController();
+                $controller->load_view('login');
 
             } else {
                 $user_session = new SessionController();
                 $session = $user_session->login($_POST['user'], $_POST['pass'] );
                 if(empty($session)) {
 
-                    $login_form = new ViewController();
-                    $login_form->load_view('login');
+                    $controller = new ViewController();
+                    $controller->load_view('login');
                     header('Location: ./?error=El usuario ' . $_POST['user'] . ' y el password proporcionado no coinciden');
                 } else {
                     $_SESSION['ok'] = true;

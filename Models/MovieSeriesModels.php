@@ -59,7 +59,7 @@ class MovieSeriesModels extends Model {
     }
 
     public function __destruct() {
-
+       
     }
 }
 
